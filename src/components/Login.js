@@ -4,12 +4,14 @@ import { checkValidData } from '../utils/validate';
 import {createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
 import {auth} from "../utils/firebase";
 
+
 const Login = () => {
   const[isSignInForm , setIsSignInForm]=useState(true);
   const [errorMessage , setErrorMessage] = useState(null);
   const email = useRef(null);
   const password = useRef(null);
   const name = useRef(null);
+   
 
 
   const handleButtonClick = ()=>{
@@ -24,6 +26,7 @@ createUserWithEmailAndPassword(auth, email.current.value , password.current.valu
     // Signed up 
     const user = userCredential.user;
     console.log(user);
+    
     // ...
   })
   .catch((error) => {
@@ -39,6 +42,7 @@ createUserWithEmailAndPassword(auth, email.current.value , password.current.valu
     // Signed in 
     const user = userCredential.user;
     console.log(user);
+   
     // ...
   })
   .catch((error) => {
