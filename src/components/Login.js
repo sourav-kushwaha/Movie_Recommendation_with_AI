@@ -1,8 +1,10 @@
 import React, { useRef, useState } from 'react'
 import Header from './Header';
 import { checkValidData } from '../utils/validate';
-import {createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
+import {createUserWithEmailAndPassword,signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import {auth} from "../utils/firebase";
+import { addUser } from '../utils/userSlice';
+import { useDispatch } from 'react-redux';
 
 
 const Login = () => {
@@ -11,6 +13,7 @@ const Login = () => {
   const email = useRef(null);
   const password = useRef(null);
   const name = useRef(null);
+  const dispatch = useDispatch();
    
 
 
@@ -25,7 +28,23 @@ createUserWithEmailAndPassword(auth, email.current.value , password.current.valu
   .then((userCredential) => {
     // Signed up 
     const user = userCredential.user;
-    console.log(user);
+     updateProfile(user, {
+            displayName: name.current.value,
+          })
+            .then(() => {
+              const { uid, email, displayName, photoURL } = auth.currentUser;
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName,
+                  photoURL: photoURL,
+                })
+              );
+            })
+            .catch((error) => {
+              setErrorMessage(error.message);
+            });
     
     // ...
   })
