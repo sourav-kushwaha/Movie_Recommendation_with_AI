@@ -9,7 +9,7 @@ const movies = useSelector((store) => store.movies.nowPlayingMovies);
 console.log(movies);
  if (!movies) return null;
      
-const mainMovie =  movies[7];
+const mainMovie =  movies[6];
 console.log(mainMovie);
 
 const {original_title , overview , id } = mainMovie;
@@ -18,7 +18,6 @@ const {original_title , overview , id } = mainMovie;
     <div>
      <VideoTitle title={original_title} overview = {overview} />
       <VideoBg movieId = {id}/>
-
     </div>
   )
 }

@@ -8,7 +8,7 @@ const VideoBg = ({movieId}) => {
   const [trailerId , setTrailerId] = useState(null);
  
   const getTrailer = async () => {
-    const data = await fetch('https://api.themoviedb.org/3/movie/'+movieId+'/videos?language=en-US' ,API_OPTIONS );
+    const data = await fetch('https://api.themoviedb.org/3/movie/'+ movieId +'/videos?language=en-US', API_OPTIONS );
     const json = await data.json();
     console.log(json);
     
@@ -27,7 +27,7 @@ const VideoBg = ({movieId}) => {
 // 
   return (
     <div className='h-full'>
-      {<iframe className='w-screen  aspect-video' src={"https://www.youtube.com/embed/"+ trailerId +"?autoplay=1&mute=1&loop=1&playlist=" + trailerId } title='my video' frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share;" referrerpolicy="strict-origin-when-cross-origin" allowFullScreen="1"></iframe>}
+      {<iframe className='w-screen  aspect-video' src={"https://www.youtube.com/embed/"+ trailerId +"?autoplay=1&mute=1&loop=1&playlist=" + trailerId} title='my video' frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share;" referrerpolicy="strict-origin-when-cross-origin" allowFullScreen="1"></iframe>}
     </div>
   )
 }
