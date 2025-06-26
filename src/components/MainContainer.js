@@ -9,7 +9,7 @@ const movies = useSelector((store) => store.movies.nowPlayingMovies);
 console.log(movies);
  if (!movies) return null;
      
-const mainMovie =  movies[6];
+const mainMovie =  movies[7];
 console.log(mainMovie);
 
 const {original_title , overview , id } = mainMovie;
